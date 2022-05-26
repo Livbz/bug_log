@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="../static/css/main.css">
+    <script src="../static/js/vue.js"></script>
+    <script src="../static/js/axios.js"></script>
+</head>
+
+<body>
+    <div id="body">
+        <div id="title">
+            <span>报价数据查询</span>
+        </div>
+        <div id="block">
+            <div v-for="(item, index) in row_list" class="row">
+                <div id="item1" class="item">
+                    ${ item.date }
+                </div>
+                <div id="item2" class="item">
+                    ${ item.name }
+                </div>
+                <div id="item3" class="item">
+                    <button :value="(item.id)">
+                        查看详情
+                    </button>
+                </div>
+
+            </div>
+        </div>
+        <div id="foot">
+            <div id="foot_btn_block">
+                <button class="foot_btn" :value="1" @click="changepage">1</button>
+                <div v-if="total_pages>=2">
+                    <div v-for="i in index + 4">
+                        i: ${i} <br>
+                        <!-- index + 4: ${index}<br>
+                        total_pages: ${total_pages}<br> -->
+                        <button v-if="i >= index - 4 && i < total_pages" name='2' class="foot_btn" value="2" @click="changepage">
+                            ${ i+1 }
+                        </button>
+                    </div>
+
+                    <div v-if="total_pages>2">
+                        <button class="foot_btn"  @click="changepage">${total_pages}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../static/js/main.js">
+    </script>
+</body>
+
+</html>
